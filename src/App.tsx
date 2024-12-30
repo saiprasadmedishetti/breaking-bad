@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import Breaking from "./components/breaking";
 import Input from "./components/input";
 import Button from "./components/button";
@@ -20,32 +20,35 @@ function App() {
     }));
   };
 
-  const handleClick = () => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setShow(true);
   };
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen p-4">
+    <main className="flex flex-col items-center justify-center h-screen p-5">
       {show && <Breaking user={user} />}
-      <div className="flex flex-col sm:flex-row gap-5 mt-8">
-        <Input
-          name="firstName"
-          placeholder="Firstname"
-          value={user.firstName}
-          onChange={onChange}
-        />
-        <Input
-          name="lastName"
-          placeholder="Lastname"
-          value={user.lastName}
-          onChange={onChange}
-        />
-      </div>
-      <div className="text-center mt-10">
-        <Button type="button" className="w-52" onClick={handleClick}>
-          Breakify
-        </Button>
-      </div>
+      <form className="w-full" onSubmit={onSubmit}>
+        <div className="flex flex-col sm:flex-row gap-5 mt-8">
+          <Input
+            className="w-full"
+            name="firstName"
+            placeholder="Firstname"
+            value={user.firstName}
+            onChange={onChange}
+          />
+          <Input
+            className="w-full"
+            name="lastName"
+            placeholder="Lastname"
+            value={user.lastName}
+            onChange={onChange}
+          />
+        </div>
+        <div className="text-center mt-10">
+          <Button className="w-52">Breakify</Button>
+        </div>
+      </form>
     </main>
   );
 }

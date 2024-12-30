@@ -39,7 +39,7 @@ export default function Breaking({
   };
 
   return (
-    <h1 className="flex flex-col text-7xl font-bold leading-tight text-wrap flex-wrap">
+    <h1 className="flex flex-col gap-2 text-7xl font-bold leading-tight text-wrap flex-wrap">
       <span>{displayText(firstName)}</span>
       <span className="text-right">{displayText(lastName)}</span>
     </h1>
